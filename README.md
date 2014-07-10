@@ -8,6 +8,7 @@ pyWebpj
 
      Python: 2.7.8
      apache:2.2
-     测试：nose、nose-cov（https://pypi.python.org/pypi/nose-cov/）
+     IDEA:pyCharm
+     test：nose、nose-cov（https://pypi.python.org/pypi/nose-cov/）
      Web：web.py（http://webpy.org/static/web.py-0.37.tar.gz）
-     数据库 MYSQLDb(http://sourceforge.net/projects/mysql-python/)
+     db: MYSQLDb(http://sourceforge.net/projects/mysql-python/)
