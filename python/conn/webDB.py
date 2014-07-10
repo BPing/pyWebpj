@@ -1,7 +1,10 @@
 # __author__ = 'ming'
 # coding=utf-8
 
-import web
+try:
+    import web
+except ImportError:
+    raise "import web error"
 
 webDB = None
 
@@ -18,13 +21,14 @@ def getWebDB():
 
     if webDB is not None:
         return webDB
-    if webConfig is None:
-        raise "please set db config first"
-    #try:
-    print(webConfig)
-    webDB = web.database(webConfig)
-    # except:
-    #     raise "init web db fail"
+    if len(webConfig) == 0:
+        raise Exception("please set db config first")
+    try:
+        print(webConfig)
+        webDB = web.database(webDBUrl, **webConfig)
+    except Exception, err:
+        print err
+        raise Exception("init web db fail")
     return webDB
 
 

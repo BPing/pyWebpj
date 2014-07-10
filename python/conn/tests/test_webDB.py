@@ -1,9 +1,14 @@
 # __author__ = 'ming'
-#coding=utf-8
+# coding=utf-8
 
 import unittest
 from conn import webDB
-import web
+
+
+ErrMsg = (
+    "please set db config first",
+    "init web db fail"
+)
 
 
 class TestWebDB(unittest.TestCase):
@@ -19,8 +24,29 @@ class TestWebDB(unittest.TestCase):
         pass
 
     def testDB(self):
-        db=web.database(dbn="mysql",db="test",user="ping",pw="123456",host="172.22.71.113",port="3306")
-        print db.select("rcp_competence")
+
+        self.assertRaises(Exception, webDB.getWebDB)
+        try:
+            webDB.getWebDB()
+        except Exception, err:
+            # print(err.message)
+            self.assertEqual(err.message, ErrMsg[0], "")
+
+        try:
+            webDB.setWebConfig(db="mysql")
+            webDB.getWebDB()
+        except Exception, err:
+            # print(err.message)
+            self.assertEqual(err.message, ErrMsg[1], "")
+
+        self.assertRaises(Exception, webDB.getWebDB)
+
+        webDB.setDbUrl(None)
+
+        webDB.webDB = 1
+
+        self.assertNotEqual(webDB.getWebDB(), None, "should not be None")
+
 
 
 
