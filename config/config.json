@@ -1,5 +1,10 @@
 {
 
     "LOG_PATH": "logTXT/",
-    "LOG_FILE_NAME": "web.log"
+    "LOG_FILE_NAME": "web.log",
+    "DB_HOST":""
+    "DB_PORT":3306
+    "DB_NAME":"test"
+    "DB_USER":""
+    "DB_PW":
 }
