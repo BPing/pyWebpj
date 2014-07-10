@@ -24,10 +24,10 @@ pyWebpj
     //#Listen for virtual host requests on all IP addresses
     NameVirtualHost *:8080
     <VirtualHost *:8080>
-    DocumentRoot "/web" //python 工程目录
+    DocumentRoot "/pyWebpj" //python 工程目录
     ServerName www.python.com
     //#mounts your application if mod_wsgi is being used
-    WSGIScriptAlias /python  "/web/code.py"
+    WSGIScriptAlias /python  "/pyWebpj/code.py"
     //#the Alias directive
     Alias /python/static "/static" //静态文件目录
     <Directory />
