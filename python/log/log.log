@@ -1,0 +1,4 @@
+2014-07-09 15:55:38,536 "testLog" [DEBUG] :Debug
+2014-07-09 15:55:38,538 "testLog" [INFO] :Info
+2014-07-09 15:55:38,538 "testLog" [WARNING] :Warn
+2014-07-09 15:55:38,538 "testLog" [ERROR] :Error
