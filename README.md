@@ -42,4 +42,8 @@ pyWebpj
         Options +Indexes
     </Directory>
     </VirtualHost> 
+    
+#参数配置
+
+     参数文件路劲：/config/config.json;   具体请看：config/参赛说明.html
 
