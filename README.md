@@ -46,4 +46,9 @@ pyWebpj
 #参数配置
 
      参数文件路劲：/config/config.json;   具体请看：config/参赛说明.html
+     
+#试一试
+
+     打开浏览器，输入http://127.0.0.1:8080/python/
+     *如果看到结果：this is a python web 则表示成功
 
