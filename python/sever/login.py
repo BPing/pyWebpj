@@ -1,8 +1,9 @@
 # __author__ = 'ming'
 #coding=utf-8
 
+import python.log as log
 
 class login():
     def GET(self):
-
-        return ""
+        log.log_I("into login:")
+        return "hello"

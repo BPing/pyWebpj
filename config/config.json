@@ -2,14 +2,14 @@
 
     "LOG_PATH": "logTXT/",
     "LOG_FILE_NAME": "web.log",
-    "DB_HOST":"172.22.71.113"
-    "DB_PORT":3306
-    "DB_NAME":"test"
-    "DB_USER":"ping"
-    "DB_PW":"123456"
-    "TEST_DB_HOST":"172.22.71.113"
-    "TEST_DB_PORT":3306
-    "TEST_DB_NAME":"test"
-    "TEST_DB_USER":"ping"
+    "DB_HOST":"172.22.71.113",
+    "DB_PORT":3306,
+    "DB_NAME":"test",
+    "DB_USER":"ping",
+    "DB_PW":"123456",
+    "TEST_DB_HOST":"172.22.71.113",
+    "TEST_DB_PORT":3306,
+    "TEST_DB_NAME":"test",
+    "TEST_DB_USER":"ping",
     "TEST_DB_PW":"123456"
 }

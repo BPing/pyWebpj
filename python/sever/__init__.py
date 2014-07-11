@@ -1,13 +1,15 @@
 # __author__ = 'ming'
+# coding=utf-8
 
 
-import web
-import log
 
 from urls import URLS
+from login import login
+from urls import pythonTest
 
 
-def run():
-    log.log_D("app run")
-    app = web.application(URLS, globals())
-    application = app.wsgifunc()
+
+
+
+
+
