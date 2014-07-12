@@ -3,6 +3,7 @@ pyWebpj
 
 主要是一个web.py apache wsgi 工程
 主要目的：学习python
+*详情请看分支temp
 
 
 #工作环境
