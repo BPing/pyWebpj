@@ -1,7 +1,7 @@
 # __author__ = 'ming'
 # coding=utf-8
 
-import config
+import python.config as config
 
 # 日志相对全路径
 LogFilePath = config.get_config("LOG_PATH") + config.get_config("LOG_FILE_NAME")

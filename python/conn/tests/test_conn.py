@@ -14,7 +14,7 @@ def test_suite():
     loader = unittest.TestLoader()
     for fn in os.listdir(here):
         if fn.startswith("test") and fn.endswith(".py"):
-            modname = "conn.tests." + fn[:-3]
+            modname = "python.conn.tests." + fn[:-3]
             __import__(modname)
             module = sys.modules[modname]
             suite.addTests(loader.loadTestsFromModule(module))

@@ -2,7 +2,7 @@
 # coding=utf-8
 
 import unittest
-from globals import Res
+from python.globals import Res
 
 testMsg = {'Size': 2, 'List': [{'name': 1, 'code': 2}, {}]}
 
@@ -42,3 +42,6 @@ class TestRes(unittest.TestCase):
         res.setAll(code=2, msg="test", describe="test")
         self.assertEqual(res.getCode(), 2, "set the msg error")
         self.assertEqual(res.getMsg(), "test", "set the msg error")
+
+        ds=res.dict()
+        self.assertEqual(ds["msg"], "test", "set the msg error")

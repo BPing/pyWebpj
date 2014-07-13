@@ -46,3 +46,6 @@ class Res():
 
     def getDescribe(self):
         return self.describe
+
+    def dict(self):
+        return {"code": self.code, "msg": self.msg, "describe": self.describe}

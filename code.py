@@ -38,14 +38,24 @@ conn.setWebConfig(dbn="mysql",
 
 import web
 
+# 加个处理器(等同中间件)
+def my_processor(handler):
+    # log.log_D('before handling')
+    result = handler()
+    # log.log_D('after handling')
+    return result
+
+
 # 启动wsgi服务
 try:
 
     log.log_D("app run:")
-    app = web.application(server.URLS, globals())
+    app = web.application(server.URLS, globals(), autoreload=True)
+    #app.add_processor(my_processor)
     application = app.wsgifunc()
 
 except Exception, e:
     log.log_E(e)
+
 
 

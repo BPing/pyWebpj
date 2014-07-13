@@ -1,7 +1,5 @@
-nosetests --with-cov --cov gobals
-coverage report
-coverage html -d covreport
-cd covreport
+nosetests --with-cov --cov python.globals --cov-report html
+cd htmlcov
 index.html
 cd ..
 

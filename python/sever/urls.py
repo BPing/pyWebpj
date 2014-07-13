@@ -3,9 +3,12 @@
 
 from login import login
 
+controller = "python.controllers."
+
 URLS = (
     "/", "python.sever.urls.pythonTest",
     "/login", "python.sever.login",
+    "/home/BoardsAll", controller + "home.handle.BoardsAll",
 )
 
 

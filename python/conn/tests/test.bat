@@ -1,8 +1,7 @@
-nosetests --with-cov --cov conn
-coverage report
-coverage html -d covreport
-cd covreport
+nosetests --with-cov --cov python.conn --cov-report html
+cd htmlcov
 index.html
 cd ..
+
 
 
