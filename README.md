@@ -6,13 +6,18 @@ pyWebpj
 
 
 #工作环境
-
+     
+     *后台
      Python: 2.7.8
      apache:2.2
      IDEA:pyCharm3.4(http://www.jetbrains.com/pycharm/)
      test：nose、nose-cov1.6（https://pypi.python.org/pypi/nose-cov/）
      Web：web.py（http://webpy.org/static/web.py-0.37.tar.gz）
      db: MYSQLDb(http://sourceforge.net/projects/mysql-python/)
+     *前台
+     angularjs-1.2.9
+     bootstrap
+     html5
 
 #apache配置
 
