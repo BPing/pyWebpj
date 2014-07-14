@@ -8,7 +8,7 @@ controller = "python.controllers."
 URLS = (
     "/", "python.sever.urls.pythonTest",
     "/login", "python.sever.login",
-    "/home/BoardsAll", controller + "home.handle.BoardsAll",
+    "/Forum/BoardsAll", controller + "Forum.handle.BoardsAll",
 )
 
 

@@ -1,9 +1,9 @@
 # __author__ = 'ming'
-#coding=utf-8
+# coding=utf-8
 
-
+# 返回状态代码与描述
 CodeMsg = {
-    "0000": "no login",
-    "0001": "no login",
+    "0": "sucess",
+    "-1": "fail",
     "0002": "no login",
 }

@@ -11,7 +11,7 @@ DateFormat = '%Y-%m-%d %H:%M:%S'
 
 def strftime(arg_datetime, format):
     """
-
+     时间处理
     """
     if arg_datetime is None and isinstance(arg_datetime, datetime.datetime) == False:
         return ""

@@ -2,6 +2,7 @@
 # coding=utf-8
 
 import types
+from code import CodeMsg
 
 
 class Res():
@@ -48,4 +49,6 @@ class Res():
         return self.describe
 
     def dict(self):
+        if self.code in CodeMsg:
+            self.describe = CodeMsg[self.code]
         return {"code": self.code, "msg": self.msg, "describe": self.describe}
