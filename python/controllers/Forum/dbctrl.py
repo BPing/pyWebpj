@@ -4,7 +4,9 @@
 import python.conn as conn
 import python.log  as log
 import datetime
+import decimal
 
+from f_sql import *
 
 DateFormat = '%Y-%m-%d %H:%M:%S'
 
@@ -13,9 +15,18 @@ def strftime(arg_datetime, format):
     """
      时间处理
     """
-    if arg_datetime is None and isinstance(arg_datetime, datetime.datetime) == False:
+    if arg_datetime is None or isinstance(arg_datetime, datetime.datetime) == False:
         return ""
     return arg_datetime.strftime(format)
+
+
+def decimal_deal(arg_decimal):
+    """
+     数字处理
+    """
+    if arg_decimal is None or arg_decimal == "" or isinstance(arg_decimal, decimal.Decimal) == False:
+        return 0
+    return str(arg_decimal)
 
 
 def boards_bigs_dict(arg_res):
@@ -29,6 +40,9 @@ def boards_bigs_dict(arg_res):
             "bb_imgUrl": arg_res.bb_imgUrl,
             "bb_description": arg_res.bb_description,
             "bb_admin": arg_res.bb_admin,
+            "bb_who": arg_res.bb_who,
+            "bb_postCount": decimal_deal(arg_res.bb_postCount),
+            "bb_replyCount": decimal_deal(arg_res.bb_replyCount),
             "bb_createDate": strftime(arg_res.bb_createDate, DateFormat),
             "bb_vieworder": arg_res.bb_vieworder}
 
@@ -62,7 +76,8 @@ def getBoardsAll():
     code = "0"
     try:
         db = conn.getWebDB()
-        result = db.select("t_forum_boards_bigs", order=" bb_vieworder ", _test=False)
+        # result = db.select("t_forum_boards_bigs", order=" bb_vieworder ", _test=False)
+        result = db.query(SBig_sql)
         for res in result:
             # log.log_D(res.bb_createDate)
             var = dict(bb_tid=res.bb_tid)

@@ -25,6 +25,9 @@ class TestHandle(unittest.TestCase):
             db.insert("t_forum_boards_bigs", bb_tid=999999,
                       bb_name="程序人生", bb_imgUrl="", bb_description="程序人生",
                       bb_admin="1000", bb_createDate=datetime.datetime.now(), bb_vieworder=3)
+            db.insert("t_forum_boards_bigs", bb_tid=9999999,
+                      bb_name="食物人生", bb_imgUrl="", bb_description="食物人生",
+                      bb_admin="1000", bb_createDate=datetime.datetime.now(), bb_vieworder=4)
 
 
             # 小版块数据准备
@@ -49,7 +52,7 @@ class TestHandle(unittest.TestCase):
     # 退出清理工作
     def tearDown(self):
         db = conn.getWebDB()
-        db.delete("t_forum_boards_small", where="bs_tid in('99999','999999')")
+        db.delete("t_forum_boards_small", where="bs_tid in('99999','999999','9999999')")
         db.delete("t_forum_boards_bigs", where="bb_tid in('99999','999999')")
 
     def testBoardsAll(self):
