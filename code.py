@@ -3,7 +3,6 @@
 import sys
 import os
 
-
 # 把自定义模块放进sys.path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 pjPath = os.path.dirname(os.path.abspath(__file__))
@@ -12,6 +11,7 @@ import python.config as config
 import python.log as log
 import python.conn as conn
 import python.server as server
+from python.globals import code
 
 
 # 配置文件初始化
@@ -73,7 +73,7 @@ try:
             from python.globals.Res import Res
 
             if web.ctx.session.get("login", False) == False:
-                return Res("404").dict()
+                return Res(code.NoLoginCode).dict()
 
         result = handler()
         return result
