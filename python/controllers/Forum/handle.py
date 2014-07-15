@@ -11,3 +11,11 @@ class BoardsAll():
         res = Res()
         res.code, res.msg = getBoardsAll()
         return json.dumps(res.dict())
+
+
+class AddBoardBig():
+    def POST(self):
+        res = Res()
+
+
+        return json.dumps(res.dict())
