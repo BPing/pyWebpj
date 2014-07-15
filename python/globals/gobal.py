@@ -10,4 +10,8 @@ LogFilePath = config.get_config("LOG_PATH") + config.get_config("LOG_FILE_NAME")
 LogFileName = config.get_config("LOG_FILE_NAME")
 
 
+# 特殊的测试开关
+TestOn = False
+
+
 
