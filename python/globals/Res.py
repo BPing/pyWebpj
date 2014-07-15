@@ -10,10 +10,10 @@ class Res():
       数据返回结构体
     """
 
-    def __init__(self, argCode=0, argMsg=None, argDescribe=""):
+    def __init__(self, argCode="0", argMsg=None, argDescribe=""):
         # 返回代码
-        if type(argCode) is types.IntType:
-            self.code = argCode
+
+        self.code = argCode
 
         # 返回数据
         self.msg = argMsg
@@ -25,8 +25,7 @@ class Res():
         self.msg = arg_Msg
 
     def setCode(self, arg_Code):
-        if type(arg_Code) is types.IntType:
-            self.code = arg_Code
+        self.code = arg_Code
 
     def setDescribe(self, arg_describe):
         self.describe = arg_describe
@@ -49,6 +48,6 @@ class Res():
         return self.describe
 
     def dict(self):
-        if self.code in CodeMsg:
+        if self.code in CodeMsg and self.describe == "":
             self.describe = CodeMsg[self.code]
         return {"code": self.code, "msg": self.msg, "describe": self.describe}

@@ -3,7 +3,15 @@
 
 # 返回状态代码与描述
 CodeMsg = {
-    "0": "sucess",
-    "-1": "fail",
-    "0002": "no login",
+    "0": "成功",
+    "-1": "失败",
+    "404": "请先登录",
+    "1001": "参数错误",
+    "1002": "账户或者密码错误"
 }
+
+SuccessCode = "0"
+FailCode = "-1"
+NoLoginCode = "404"
+ParamErrCode = "1001"
+AccountOrPwErrCode = "1002"
