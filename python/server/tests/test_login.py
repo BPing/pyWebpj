@@ -5,7 +5,6 @@
 import unittest
 from testHttp import TestApp as App
 from testHttp import TestConn as conn
-import datetime
 import json
 from python.globals import code, gobal
 
@@ -46,33 +45,33 @@ class TestLoginOrOut(unittest.TestCase):
         """
 
         # 同时存在两个
-        r = self.app.request("/login?u_account=1106100150&u_pw=123456")
+        r = self.app.request("/login", "POST", data=dict(u_account=1106100150, u_pw=123456))
         self.assertEqual(r.status, '200 OK', "request error")
         decodejson = json.loads(r.data)
         self.assertTrue(decodejson["code"] == code.AccountOrPwErrCode, "request error")
 
         # 不存在
-        r = self.app.request("/login?u_account=1106100150&u_pw=123456")
+        r = self.app.request("/login", "POST", data=dict(u_account=11061001501, u_pw=123456))
         self.assertEqual(r.status, '200 OK', "request error")
         decodejson = json.loads(r.data)
         self.assertTrue(decodejson["code"] == code.AccountOrPwErrCode, "request error")
 
         # 正确
-        r = self.app.request("/login?u_account=1106100151&u_pw=123456")
+        r = self.app.request("/login", "POST", data=dict(u_account=1106100151, u_pw=123456))
         self.assertEqual(r.status, '200 OK', "request error")
         decodejson = json.loads(r.data)
         self.assertTrue(decodejson["code"] == code.SuccessCode, "request error")
 
         # 正确
         gobal.TestOn = True
-        r = self.app.request("/login?u_account=1106100151&u_pw=123456")
+        r = self.app.request("/login", "POST", data=dict(u_account=1106100150, u_pw=123456))
         self.assertEqual(r.status, '200 OK', "request error")
         decodejson = json.loads(r.data)
         self.assertTrue(decodejson["code"] == code.FailCode, "request error")
         gobal.TestOn = False
 
         # 参数错误
-        r = self.app.request("/login?u_account=11061001516%$&u_pw=123456")
+        r = self.app.request("/login", "POST", data=dict(u_account="11061001516%$", u_pw=123456))
         self.assertEqual(r.status, '200 OK', "request error")
         decodejson = json.loads(r.data)
         self.assertTrue(decodejson["code"] == code.ParamErrCode, "request error")
@@ -82,15 +81,18 @@ class TestLoginOrOut(unittest.TestCase):
         """
         退出注销
         """
-        r = self.app.request("/logout")
+        r = self.app.request("/logout", "POST")
         self.assertEqual(r.status, '200 OK', "request error")
         decodejson = json.loads(r.data)
         self.assertTrue(decodejson["code"] == code.SuccessCode, "request error")
 
         # 异常测试开关
         gobal.TestOn = True
-        r = self.app.request("/logout")
+        r = self.app.request("/logout", "POST")
         self.assertEqual(r.status, '200 OK', "request error")
         decodejson = json.loads(r.data)
         self.assertTrue(decodejson["code"] == code.FailCode, "request error")
         gobal.TestOn = False
+
+        r = self.app.request("/", "POST", data={"test": "testPOST"})
+        print(r.items())

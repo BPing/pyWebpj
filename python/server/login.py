@@ -14,7 +14,7 @@ class Login():
     登陆处理
     """
 
-    def GET(self):
+    def POST(self):
         log.log_I("into login:")
 
         f_res = Res()
@@ -81,7 +81,7 @@ class LogOut():
     退出注销处理
     """
 
-    def GET(self):
+    def POST(self):
         f_res = Res()
         try:
             if gobal.TestOn == True:

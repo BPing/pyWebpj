@@ -21,3 +21,8 @@ class pythonTest:
         log.log_D(web.ctx.session.get("count"))
         return "this is a python web"
 
+    def POST(self):
+        f_input = web.input()
+        log.log_D(f_input.test)
+        return "this is a python web"
+
