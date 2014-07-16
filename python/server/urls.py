@@ -12,6 +12,7 @@ URLS = (
     "/login", server + "login.Login",
     "/logout", server + "login.LogOut",
     "/Forum/BoardsAll", controller + "Forum.handle.BoardsAll",
+    "/L/Forum/BoardsAll", controller + "Forum.handle.BoardSmallDeal",
 )
 
 
@@ -23,6 +24,9 @@ class pythonTest:
 
     def POST(self):
         f_input = web.input()
-        log.log_D(f_input.test)
+        if "test" not in f_input:
+            log.log_D("test is None")
+        else:
+            log.log_D(f_input.test)
         return "this is a python web"
 

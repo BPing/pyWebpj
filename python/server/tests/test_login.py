@@ -38,7 +38,6 @@ class TestLoginOrOut(unittest.TestCase):
         db = conn.getWebDB()
         db.delete("sys_user", where="u_tid in('99999','999999','9999999')")
 
-
     def testLogin(self):
         """
         登陆
@@ -75,7 +74,6 @@ class TestLoginOrOut(unittest.TestCase):
         self.assertEqual(r.status, '200 OK', "request error")
         decodejson = json.loads(r.data)
         self.assertTrue(decodejson["code"] == code.ParamErrCode, "request error")
-
 
     def testLogOut(self):
         """
