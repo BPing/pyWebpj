@@ -5,6 +5,8 @@ import python.conn as conn
 import python.log  as log
 import datetime
 import decimal
+from globals import code as Code
+from globals import reg
 
 from f_sql import *
 
@@ -68,15 +70,16 @@ def boards_smalls_dict(arg_res):
         "bs_typeId": arg_res.bs_typeId}
 
 
-def getBoardsAll():
+def get_boards_all():
     """
     获取大版块和大版块下的一级版块
     """
+    log.log_D("into get_boards_all :")
+
     data = []
-    code = "0"
+    code = Code.SuccessCode
     try:
         db = conn.getWebDB()
-        # result = db.select("t_forum_boards_bigs", order=" bb_vieworder ", _test=False)
         result = db.query(SBig_sql)
         for res in result:
             # log.log_D(res.bb_createDate)
@@ -90,12 +93,106 @@ def getBoardsAll():
 
     except Exception as e:
         log.log_E("getBoardsAll:" + e.message)
-        code = "-1"
+        code = Code.FailCode
 
     return code, data
 
 
+def delete_big_board(arg_tid):
+    """
+     大版块删除操作
+     如果不存在附属的小版块，则可以删除
+
+     Args:
+       arg_tid：大版块数据标识 tid
+
+    """
+    log.log_D("into delete_big_board :")
+    code = Code.SuccessCode
+
+    db = conn.getWebDB()
+    t = db.transaction()
+    try:
+
+        for num in range(0, 1):
+            n = db.select("t_forum_boards_small", dict(tid=arg_tid), what="bs_tid", where="bs_bigID=$tid")
+
+            if len(n) > 0:
+                code = Code.HasSmallBoardsCode
+                break
+
+            m = db.delete("t_forum_boards_bigs", dict(tid=arg_tid), where="bb_tid=$tid")
+
+            if m < 0:
+                code = Code.FailDeleteBigCode
+                break
+
+            break
+
+    except Exception as e:
+        log.log_E("delete_big_board:" + e.message)
+        code = Code.FailCode
+        t.rollback()
+    else:
+        t.commit()
+
+    return code
 
 
+def add_big_board(arg_input, arg_who):
+    """
+     大版块添加操作
+
+     Args:
+       arg_input：需要数据
+                  字典
+                  {
+                  bb_name
+                  bb_imgUrl
+                  bb_description
+                  }
+        arg_who:操作人id，用来判断权限
+
+     Return:
+        如果 code 为  Code.SuccessCode 则是操作成功，
+        否则是失败（具体查看globals.code）
+
+    """
+    log.log_D("into add_big_board :")
+    code = Code.SuccessCode
+    db = conn.getWebDB()
+    t = db.transaction()
+    try:
+
+        for num in range(0, 1):
+            if ("bb_name" not in arg_input or
+                        "bb_imgUrl" not in arg_input or
+                        "bb_description" not in arg_input or
+                        reg.NumOnly.match(arg_who) is None):
+                code = Code.NohasParamCode
+                break
+
+            n = db.select("t_forum_boards_permission", dict(tid=arg_who), what="bp_tid",
+                          where="bp_uid=$tid and bp_btype=1000")
+
+            if len(n) != 1:
+                code = Code.NoPermissionCode
+                break
+
+            count = db.insert("t_forum_boards_bigs", bb_name=arg_input.bb_name, bb_imgUrl=arg_input.bb_imgUrl,
+                              bb_description=arg_input.bb_description, bb_admin=arg_who,
+                              bb_createDate=datetime.datetime.now())  # , bb_vieworder=4
+
+            if count is None or count <= 0:
+                code = Code.FailDeleteBigCode
+                break
 
 
+    except Exception as e:
+        log.log_E("add_big_board:" + e.message)
+        code = Code.FailCode
+        t.rollback()
+    else:
+        t.commit()
+
+    return code
