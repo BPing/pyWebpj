@@ -3,6 +3,7 @@
 
 
 from Res import Res
-from code import CodeMsg
 from gobal import *
+from reg import *
+from code import *
 
