@@ -5,8 +5,8 @@ import python.conn as conn
 import python.log  as log
 import datetime
 import decimal
-from globals import code as Code
-from globals import reg
+from python.globals import code as Code
+from python.globals import reg
 
 from f_sql import *
 
